@@ -74,13 +74,7 @@ def RFID_getHashCodeGuinche():
 def RFID_getHashUID():
     return int(RFID_read(config.blockHashUID))
 def RFID_resetCarte():
-    hint("RESET CARTE RFID",3)
-    hint("-"*0+">",4)
+    hint("RESET EN COURS",3)
     RFID_setArgent(0)
-    hint("-"*5+">",4)
     RFID_write(config.blockHashCodeGuinche,str(int(CRYPT_hashage(config.codeGuinche))))
-    hint("-"*10+">",4)
-    RFID_write(config.blockHashArgent,str(int(CRYPT_hashage(0))))
-    hint("-"*15+">",4)
     RFID_write(config.blockHashUID,str(int(CRYPT_hashage(RFID_getUID()))))
-    hint("-"*19+">",4)
