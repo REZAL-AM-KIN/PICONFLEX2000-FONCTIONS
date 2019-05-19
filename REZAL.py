@@ -36,7 +36,7 @@ def REZAL_getVersion():
     return str(random()).replace("0.","")[:3]
 def REZAL_restart():
     hint("RESTART",4)
-    os.system("sudo python3 /home/pi/PICONFLEX2000/client/boot.py")
+    os.system("sudo python3 /home/pi/PICONFLEX2000-CLIENT/boot.py")
     sys.exit()
 def REZAL_reboot():
     hint("REBOOT",4)
