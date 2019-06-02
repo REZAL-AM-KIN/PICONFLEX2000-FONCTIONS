@@ -1,6 +1,6 @@
 print("Demarrage 'CRYPT.py'")
 def CRYPT_hashage(data):
-    seed(data)
+    seed(str(data)+str(config.codeGuinche))
     seed(random())
     return str(random()).replace("0.","")[:8]
 def CRYPT_HashDossier(path,noList):
@@ -19,9 +19,6 @@ def CRYPT_HashDossier(path,noList):
             
             print(file_path)
             digest.update(hashlib.sha1(file_path[len(path):].encode()).digest())
-
-            # Per @pt12lol - if the goal is uniqueness over repeatability, this is an alternative method using 'hash'
-            # digest.update(str(hash(file_path[len(path):])).encode())
 
             if os.path.isfile(file_path):
                 with open(file_path, 'rb') as f_obj:

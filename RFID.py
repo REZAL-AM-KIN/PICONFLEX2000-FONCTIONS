@@ -36,21 +36,25 @@ def RFID_readCarte():
             pass
         sleep(0.01)
 def RFID_write(block,TAG):
-    print("Ecriture: "+str(TAG))
-    print("Block: "+str(block))
+    hint("Ecriture en cours",4)
+    # print("Ecriture: "+str(TAG))
+    # print("Block: "+str(block))
     tag=STRING_List(TAG)
     while True:
         try:
             if RFID_presence():
+                hint("Carte detectee",4)
                 (status,uid) = MIFAREReader.MFRC522_Anticoll()
                 if status == MIFAREReader.MI_OK:
                     MIFAREReader.MFRC522_Read(block)
                     MIFAREReader.MFRC522_Write(block,tag)
                     TAG_read=RFID_read(block)
                     if str(TAG_read)==str(TAG):
+                        hint("Ecriture reussi",4)
                         return
+                    hint("Echec ecriture",4)
         except:
-            pass
+            hint("Difficulte ecriture",4)
 def RFID_setArgent(montant):
     montant=("0"*8+str(max(0,montant)))[-8:]
     RFID_write(config.blockArgent,montant)
