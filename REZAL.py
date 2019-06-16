@@ -4,6 +4,8 @@ def REZAL_ping(IP):
         return int(os.system("ping -a -c 1 -W 1 "+str(IP))==0)
     except:
         return False
+def REZAL_pingAndSetState(IP):
+    return SQL_EXECUTE(QUERRY_setOnline(IP,int(REZAL_ping(IP))))
 def REZAL_pingServeur():
     return REZAL_ping(setting.connection["host"])
 def REZAL_pingInternet():
