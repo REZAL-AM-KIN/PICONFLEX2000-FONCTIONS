@@ -37,14 +37,24 @@ def REZAL_getVersion():
     seed(_str)
     return str(random()).replace("0.","")[:3]
 def REZAL_restart():
-    hint("RESTART",4)
+    hint("REDEMARRAGE",1)
+    hint("DU",2)
+    hint("SCRIPT",3)
+    hint("PICONFLEX2000",4)
     os.system("sudo python3 /home/pi/PICONFLEX2000-CLIENT/boot.py")
     sys.exit()
 def REZAL_reboot():
-    hint("REBOOT",4)
+    hint("REDEMARRAGE",1)
+    hint("DU",2)
+    hint("RASPBERRY",3)
+    hint("PI",4)
     os.system("sudo reboot")
     sys.exit()
 def REZAL_exit():
+    hint("ARRET",1)
+    hint("DU",2)
+    hint("SCRIPT",3)
+    hint("reboot pour restart",4)
     sys.exit()
 def REZAL_synchQUERRYToSQL():
     _SQLQUERRY=DATA_get("/home/pi/PICONFLEX2000/log/LOG_QUERRY.txt")
