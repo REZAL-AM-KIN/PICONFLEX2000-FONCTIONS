@@ -81,22 +81,26 @@ def MENU_MAJGitClone():
     if setting.rezalNet:
         hint("git clone",4)
         os.chdir("/home/pi")
-        os.system("sudo rm -r PICONFLEX2000")
-        if os.system("sudo git clone https://github.com/REZALKIN/PICONFLEX2000.git")==0:
-            REZAL_restart()
-        else:
-            hint("Echec git clone",4)
+        os.system("sudo rm -r PICONFLEX2000-FONCTIONS")
+        os.system("sudo rm -r PICONFLEX2000-CLIENT")
+        if os.system("sudo git clone https://github.com/REZALKIN/PICONFLEX2000-CLIENT.git")==0:
+            if os.system("sudo git clone https://github.com/REZALKIN/PICONFLEX2000-FONCTIONS.git")==0:
+                REZAL_restart()
+        hint("Echec git clone",4)
+        REZAL_exit()
     else:
         hint("Pas d'internet",4)
     CLAVIER_get()
 def MENU_githubPull():
     if setting.rezalNet:
         hint("git pull",4)
-        os.chdir("/home/pi/PICONFLEX2000")
+        os.chdir("/home/pi/PICONFLEX2000-FONCTIONS")
         if os.system("sudo git pull")==0:
-            REZAL_restart()
-        else:
-            hint("Echec git pull",4)
+            os.chdir("/home/pi/PICONFLEX2000-CLIENT")
+            if os.system("sudo git pull")==0:
+                REZAL_restart()
+        hint("Echec git pull",4)
+        REZAL_exit()
     else:
         hint("Pas d'internet",4)
     CLAVIER_get()
