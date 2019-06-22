@@ -29,7 +29,7 @@ def REZAL_getMAC():
                 MAC=open('/sys/class/net/%s/address' %dir).read()[0:17]
     return MAC
 def REZAL_getVersion():
-    _str=str(CRYPT_HashDossier("/home/pi/PICONFLEX2000",["setting.py",".git","log"]))
+    _str=str(CRYPT_HashDossier("/home/pi/PICONFLEX2000-FONCTIONS",["setting.py",".git"]))+str(CRYPT_HashDossier("/home/pi/PICONFLEX2000-CLIENT",["setting.py",".git"]))
     seed(_str)
     return str(random()).replace("0.","")[:3]
 def REZAL_restart():
