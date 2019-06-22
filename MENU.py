@@ -69,7 +69,7 @@ def MENU_setIPServeur():
         elif (_touche==47):
             return REZAL_restart()
         elif (_touche==42):
-            return REZAL_reboot()
+            REZAL_reboot()
         elif (_touche==45):
             REZAL_exit()
         hint("IP: "+IP,4)
@@ -192,7 +192,7 @@ def MENU_getMontant(argent):
             elif (int(montant)>500):
                 montant=str(500)
         elif (_touche==42):#_touche *
-            return REZAL_reboot()
+            REZAL_reboot()
         elif (_touche==47):
             return REZAL_restart()
 def MENU_getCommande(argent):
@@ -247,7 +247,7 @@ def MENU_getCommande(argent):
         elif (_touche==47):
             return REZAL_restart()
         elif (_touche==42):
-            return REZAL_reboot()
+            REZAL_reboot()
 def MENU_getMenu(MENUS):
     hint((" "*7+str(setting.nomBox))[-7:]+"-"+("0"*2+str(setting.numeroBox))[-2:]+"|"+str(int(setting.rezalNet))+str(int(setting.rezalOn))+str(int(setting.rezalMode))+"|V"+str(setting.version),1)
     hint("",2)
