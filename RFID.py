@@ -14,11 +14,9 @@ def RFID_waitRetireCarte():
         pass
     return
 def RFID_read(block):
-    hint("!TENTATIVE LECTURE !",4)
     while True:
         try:
             if RFID_presence():
-                hint("!  CARTE DETECTEE  !",4)
                 (status,uid)=MIFAREReader.MFRC522_Anticoll()
                 if status==MIFAREReader.MI_OK:
                     MIFAREReader.MFRC522_SelectTag(uid)
@@ -27,11 +25,9 @@ def RFID_read(block):
         except:
             hint("! PROBLEME LECTURE !",4)
 def RFID_readCarte():
-    hint("!TENTATIVE LECTURE !",4)
     while True:
         try:
             if RFID_presence():
-                hint("!  CARTE DETECTEE  !",4)
                 (status,uid)=MIFAREReader.MFRC522_Anticoll()
                 if status==MIFAREReader.MI_OK:
                     return (int(STRING_Tag(uid)),int(STRING_Tag(MIFAREReader.MFRC522_Read(config.blockArgent)[0:8])),int(STRING_Tag(MIFAREReader.MFRC522_Read(config.blockHashCodeGuinche)[0:8])),int(STRING_Tag(MIFAREReader.MFRC522_Read(config.blockHashUID)[0:8])),int(STRING_Tag(MIFAREReader.MFRC522_Read(config.blockHashArgent)[0:8])))
@@ -39,14 +35,10 @@ def RFID_readCarte():
             hint("! PROBLEME LECTURE !",4)
         sleep(0.01)
 def RFID_write(block,TAG):
-    hint("!TENTATIVE ECRITURE!",4)
-    print("Ecriture: "+str(TAG))
-    print("Block: "+str(block))
     tag=STRING_List(TAG)
     while True:
         try:
             if RFID_presence():
-                hint("!  CARTE DETECTEE  !",4)
                 (status,uid) = MIFAREReader.MFRC522_Anticoll()
                 if status == MIFAREReader.MI_OK:
                     MIFAREReader.MFRC522_Read(block)

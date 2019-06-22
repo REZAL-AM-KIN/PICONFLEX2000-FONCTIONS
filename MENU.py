@@ -79,16 +79,21 @@ def MENU_setMDPBDD():
     return
 def MENU_MAJGitClone():
     if setting.rezalNet:
-        hint("git clone",4)
+        hint("Direction /home/pi",4)
         os.chdir("/home/pi")
+        hint("Suppr FONCTIONS",4)
         os.system("sudo rm -r PICONFLEX2000-FONCTIONS")
+        hint("git clone FONCTIONS",4)
         if os.system("sudo git clone https://github.com/REZALKIN/PICONFLEX2000-FONCTIONS.git")!=0:
             hint("Echec git clone",4)
             REZAL_exit()
+        hint("Suppr CLIENT",4)
         os.system("sudo rm -r PICONFLEX2000-CLIENT")
+        hint("git clone CLIENT",4)
         if os.system("sudo git clone https://github.com/REZALKIN/PICONFLEX2000-CLIENT.git")!=0:
             hint("Echec git clone",4)
             REZAL_exit()
+        hint("git clone reussi! :)",4)
         REZAL_restart()
     else:
         hint("Pas d'internet",4)
