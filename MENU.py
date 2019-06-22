@@ -24,7 +24,7 @@ def MENU_menuUser():
     MENU_getMenu(config.menuUser)
 def MENU_setNumeroBox():
     NUM=""
-    hint("ENTREZ LE NUMERO",4)
+    hint("ENTREZ LE NUMERO BOX",4)
     while True:
         _touche=CLAVIER_get()
         if (_touche==10):
@@ -97,20 +97,28 @@ def MENU_MAJGitClone():
         REZAL_restart()
     else:
         hint("Pas d'internet",4)
-    CLAVIER_get()
+        CLAVIER_get()
+        hint("",4)
 def MENU_githubPull():
     if setting.rezalNet:
-        hint("git pull",4)
+        hint("Direction FONCTIONS",4)
         os.chdir("/home/pi/PICONFLEX2000-FONCTIONS")
-        if os.system("sudo git pull")==0:
-            os.chdir("/home/pi/PICONFLEX2000-CLIENT")
-            if os.system("sudo git pull")==0:
-                REZAL_restart()
-        hint("Echec git pull",4)
-        REZAL_exit()
+        hint("git pull FONCTIONS",4)
+        if os.system("sudo git pull")!=0:
+            hint("Echec pull FONCTIONS",4)
+            REZAL_exit()
+        hint("Direction CLIENT",4)
+        os.chdir("/home/pi/PICONFLEX2000-CLIENT")
+        hint("git pull CLIENT",4)
+        if os.system("sudo git pull")!=0:
+            hint("Echec pull CLIENT",4)
+            REZAL_restart()
+        hint("git pull reussi ! :)",4)
+        REZAL_restart()
     else:
         hint("Pas d'internet",4)
         CLAVIER_get()
+        hint("",4)
 def MENU_getCode(code,texte):
     if setting.numeroBox==0:
         return
