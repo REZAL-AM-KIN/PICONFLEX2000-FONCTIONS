@@ -54,7 +54,7 @@ def REZAL_exit():
     hint("SCRIPT",3)
     sys.exit()
 def REZAL_synchQUERRYToSQL():
-    _SQLQUERRY=DATA_get("/home/pi/PICONFLEX2000/log/LOG_QUERRY.txt")
+    _SQLQUERRY=DATA_get("/home/pi/PICONFLEX2000-LOGS/LOG_QUERRY.txt")
     if _SQLQUERRY!="":
         SQL_UPDATE(_SQLQUERRY)
-        os.system("sudo rm "+"/home/pi/PICONFLEX2000/log/LOG_QUERRY.txt")
+        os.system("sudo rm "+"/home/pi/PICONFLEX2000-LOGS/LOG_QUERRY.txt")

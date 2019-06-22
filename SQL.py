@@ -22,14 +22,14 @@ def SQL_UPDATE(querry):
         except:
             pass
     _cnx.close()
-    DATA_add('/home/pi/PICONFLEX2000/log/LOG_SQL.txt',querry+"\n")
+    DATA_add('/home/pi/PICONFLEX2000-LOGS/LOG_SQL.txt',querry+"\n")
 def SQL_EXECUTE(querry):
     _cnx=mysql.connector.connect(**setting.connection)
     _cursor=_cnx.cursor()
     _cursor.execute(querry)
     _cnx.commit()
     _cnx.close()
-    DATA_add('/home/pi/PICONFLEX2000/log/LOG_SQL.txt',querry+"\n")
+    DATA_add('/home/pi/PICONFLEX2000-LOGS/LOG_SQL.txt',querry+"\n")
 def SQL_getVersion(numeroBox):
     return SQL_SELECT(QUERRY_getVersion(numeroBox))[0][0]
 def SQL_getProduits(numeroBox):

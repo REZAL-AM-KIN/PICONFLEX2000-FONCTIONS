@@ -307,13 +307,13 @@ def MENU_resetCarteBDD():
     SQL_EXECUTE(QUERRY_addLog(setting.numeroBox,setting.nomBox,"RESET CARTE BDD",str(UID)))
     RFID_waitRetireCarte()
 def MENU_resetLogQuerry():
-    os.system("sudo rm "+"/home/pi/PICONFLEX2000/log/LOG_QUERRY.txt")
+    os.system("sudo rm "+"/home/pi/PICONFLEX2000-LOGS/LOG_QUERRY.txt")
     CLAVIER_get()
 def MENU_resetLogSQL():
-    os.system("sudo rm "+"/home/pi/PICONFLEX2000/log/LOG_SQL.txt")
+    os.system("sudo rm "+"/home/pi/PICONFLEX2000-LOGS/LOG_SQL.txt")
     CLAVIER_get()
 def MENU_resetLogError():
-    os.system("sudo rm "+"/home/pi/PICONFLEX2000/log/LOG_ERROR.txt")
+    os.system("sudo rm "+"/home/pi/PICONFLEX2000-LOGS/LOG_ERROR.txt")
     CLAVIER_get()
 def MENU_setNomBox():
     
