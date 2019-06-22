@@ -39,7 +39,7 @@ def MENU_setNumeroBox():
             else:
                 pass
         elif(_touche in [48,49,50,51,52,53,54,55,56,57]):
-            NUM=str(NUM)+chr(_touche)
+            NUM=(str(NUM)+chr(_touche))
         elif (_touche==47):
             REZAL_restart()
         elif (_touche==42):
@@ -265,7 +265,7 @@ def MENU_getCommande(argent):
         elif (_touche==42):
             REZAL_reboot()
 def MENU_getMenu(MENUS):
-    hint((" "*7+str(setting.nomBox))[-7:]+"-"+("0"*2+str(setting.numeroBox))[-2:]+"|"+str(int(setting.rezalNet))+str(int(setting.rezalOn))+str(int(setting.rezalMode))+"|V"+str(setting.version),1)
+    hint(str(setting.nomBox)+"-"+str(setting.numeroBox)+"|"+str(int(setting.rezalNet))+str(int(setting.rezalOn))+str(int(setting.rezalMode))+"|V"+str(setting.version),1)
     hint("",2)
     hint("",3)
     hint("",4)
