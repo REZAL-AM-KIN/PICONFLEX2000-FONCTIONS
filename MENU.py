@@ -28,8 +28,11 @@ def MENU_setNumeroBox():
     while True:
         _touche=CLAVIER_get()
         if (_touche==10):
-            DATA_setVariable("numeroBox",NUM)
-            return 
+            try:
+                DATA_setVariable("numeroBox",int(NUM))
+                return
+            except:
+                pass
         elif (_touche in [46,127]):
             if (len(NUM)!=0):
                 NUM=NUM[0:-1]
