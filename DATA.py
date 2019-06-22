@@ -19,7 +19,6 @@ def DATA_setVariable(variableName,contenu):
             _lineToWrite+="\n"
             _file=DATA_get(fichierName).replace(_ligne,_lineToWrite)
             DATA_set(fichierName,_file)
-            print(_file)
             return
     _tmp.close()
     print("Variable "+variableName+" non-trouvee")

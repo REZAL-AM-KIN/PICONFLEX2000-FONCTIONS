@@ -11,11 +11,7 @@ def REZAL_pingServeur():
 def REZAL_pingInternet():
     return REZAL_ping(setting.serveurNet)
 def REZAL_getIP():
-    IP=str(subprocess.check_output("hostname -I",shell=True).decode('utf-8'))
-    IP=IP.replace(" ","")
-    IP=IP.replace("\n","")
-    IP=IP.replace("\t","")
-    return IP
+    return str(subprocess.check_output("hostname -I",shell=True).decode('utf-8')).split(" ")[0]
 def REZAL_connect(IP):
     env.host_string=IP
     env.user=setting.connection['user']
