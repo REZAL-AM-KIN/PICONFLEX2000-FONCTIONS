@@ -46,7 +46,7 @@ def RFID_write(block,TAG):
                     TAG_read=RFID_read(block)
                     if str(TAG_read)==str(TAG):
                         return
-                    hint("! ERREUR ECRITURE  !",4)
+                    hint(str(TAG_read)+" / "+str(TAG),4)
         except:
             hint("!PROBLEME ECRITURE !",4)
 def RFID_setArgent(montant):
