@@ -15,14 +15,13 @@ def QUERRY_addTransaction(produit,nombre,numeroBox,UID,montant,reference):
     montant=montant/nombre
     _str=""
     for i in range(nombre):
-        if montant<0:
-            if produit=="VenteMontant":
-                _str=_str+(("INSERT INTO ventemontant (UID, montant, box) VALUES ('{}','{}','{}');").format(UID,-montant,numeroBox))#Vente montant
-            else:
-                _str=_str+(("INSERT INTO venteproduit (UID, produit, box) VALUES ('{}','{}','{}');").format(UID,reference,numeroBox))#Vente produit
-                _str=_str+(("UPDATE stock set stock.stock = (stock.stock -(SELECT produits.quantite/matierepremiere.quantite_matiere from produits JOIN matierepremiere on produits.matierepremiere = matierepremiere.id WHERE produits.reference = '{}')) WHERE stock.matierepremiere_id= (SELECT matierepremiere.id FROM matierepremiere JOIN produits on matierepremiere.id=produits.matierepremiere WHERE produits.reference ='{}') AND stock.comptoir_id =(SELECT comptoir.id FROM comptoir JOIN boxs ON comptoir.id = boxs.comptoir where boxs.numeroBox = '{}');").format(reference,reference,numeroBox))
-        else:
+        if produit=="VenteMontant":
+            _str=_str+(("INSERT INTO ventemontant (UID, montant, box) VALUES ('{}','{}','{}');").format(UID,-montant,numeroBox))#Vente montant
+        elif produit=="RechargeMontant":
             _str=_str+(("INSERT INTO recharge (UID, montant, box) VALUES ('{}','{}','{}');").format(UID,montant,numeroBox))#Recharge montant
+        else:
+            _str=_str+(("INSERT INTO venteproduit (UID, produit, box) VALUES ('{}','{}','{}');").format(UID,reference,numeroBox))#Vente produit
+            _str=_str+(("UPDATE stock set stock.stock = (stock.stock -(SELECT produits.quantite/matierepremiere.quantite_matiere from produits JOIN matierepremiere on produits.matierepremiere = matierepremiere.id WHERE produits.reference = '{}')) WHERE stock.matierepremiere_id= (SELECT matierepremiere.id FROM matierepremiere JOIN produits on matierepremiere.id=produits.matierepremiere WHERE produits.reference ='{}') AND stock.comptoir_id =(SELECT comptoir.id FROM comptoir JOIN boxs ON comptoir.id = boxs.comptoir where boxs.numeroBox = '{}');").format(reference,reference,numeroBox))
     return _str
 def QUERRY_getMode(numeroBox):
     return ("SELECT mode FROM boxs WHERE numeroBox='{}';".format(numeroBox))

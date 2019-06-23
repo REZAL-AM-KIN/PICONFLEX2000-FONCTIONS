@@ -22,7 +22,7 @@ def DATA_setVariable(variableName,contenu):
             return
     _tmp.close()
     print("Variable "+variableName+" non-trouvee")
-    sleep(5)
+    REZAL_exit()
     return
 def DATA_set(fichierName,contenu):
     DATA_check(fichierName)

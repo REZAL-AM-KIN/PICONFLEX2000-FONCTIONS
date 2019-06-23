@@ -15,12 +15,8 @@ def SQL_UPDATE(querry):
     for i in range(len(querrys)):
         hint("SYNCH SQL "+str(i)+" / "+str(n),4)
         q=querrys[i]
-        try:
-            print(q)
-            _cursor.execute(q)
-            _cnx.commit()
-        except:
-            pass
+        _cursor.execute(q)
+        _cnx.commit()
     _cnx.close()
     DATA_add('/home/pi/PICONFLEX2000-LOGS/LOG_SQL.txt',querry+"\n")
 def SQL_EXECUTE(querry):

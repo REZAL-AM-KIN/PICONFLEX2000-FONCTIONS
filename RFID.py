@@ -64,7 +64,6 @@ def RFID_getUID():
         except:
             pass
 def RFID_resetCarte():
-    hint("RESET EN COURS",3)
     RFID_setArgent(0)
     RFID_write(config.blockHashCodeGuinche,str(int(CRYPT_hashage(config.codeGuinche))))
     RFID_write(config.blockHashUID,str(int(CRYPT_hashage(RFID_getUID()))))

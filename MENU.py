@@ -6,6 +6,7 @@ def MENU_clear():
     hint("",4)
 def MENU_menuPrincipal():
     MENU_clear()
+    hint(str(setting.nomBox)+"-"+str(setting.numeroBox)+"|"+str(int(setting.rezalNet))+str(int(setting.rezalOn))+str(int(setting.rezalMode))+"|V"+str(setting.version),1)
     MENU_getMenu(config.menuPrincipal)
 def MENU_menuAdmin():
     MENU_getCode(config.codeAdmin,"menuAdmin")
@@ -123,8 +124,6 @@ def MENU_githubPull():
         CLAVIER_get()
         hint("",4)
 def MENU_getCode(code,texte):
-    if setting.numeroBox==0:
-        return
     _txt=""
     while True:
         hint(texte,3)
@@ -144,23 +143,21 @@ def MENU_getCode(code,texte):
         elif (_touche==45):
             REZAL_exit()
         try:
-            if int(_txt) in [code,config.codeGuinche]:
+            if int(_txt)==code:
                 return
         except:
-            pass #bla
+            pass
 def MENU_getMontant(argent):
     montant=""
     while True:
         if (montant==""):
-            hint("Credit: "+STRING_montant(argent),2)
             hint("ENTRER LE MONTANT",4)
         else:
-            hint("Montant: "+STRING_montant(montant),2)
-            if setting.nomBox[0]=="C":
-                hint(STRING_montant(argent)+" -> "+STRING_montant(int(montant)+argent),3)
-            elif setting.nomBox[0]=="K":
-                hint(STRING_montant(argent)+" -> "+STRING_montant(int(montant)-argent),3)
-            hint("ENTRER LE MONTANT",4)
+            hint("Montant: "+STRING_montant(montant),4)
+        if setting.nomBox[0]=="C":
+            hint(STRING_montant(argent)+" -> "+STRING_montant(int(montant)+argent),2)
+        elif setting.nomBox[0]=="K":
+            hint(STRING_montant(argent)+" -> "+STRING_montant(int(montant)-argent),2)
         _touche=CLAVIER_getRFID()
         if (_touche==0):#carte retiree
             return 0
@@ -168,13 +165,13 @@ def MENU_getMontant(argent):
             if (montant==""):
                 pass
             elif (int(montant)<config.minMontant):
-                hint("Montant Trop bas",2)
+                hint("Montant Trop bas",4)
                 sleep(1)
-            elif ((int(montant)+argent>config.maxMontant)and((setting.nomBox[0] in ["c","C"]))):
-                hint("Total Trop haut",2)
+            elif ((int(montant)+argent>config.maxMontant)and((setting.nomBox[0]=="C"))):
+                hint("Total Trop haut",4)
                 sleep(1)
-            elif ((int(montant)>config.maxTransaction)and((setting.nomBox[0] in ["c","C"]))):
-                hint("Montant Trop haut",2)
+            elif ((int(montant)>config.maxTransaction)and((setting.nomBox[0]=="C"))):
+                hint("Montant Trop haut",4)
                 sleep(1)
             else:
                 return int(montant)
@@ -217,24 +214,25 @@ def MENU_getCommande(argent):
     montant=0
     nombre=1
     while True:
-        if reference!="":
+        if reference=="":
+            hint("ENTRER UNE REFERENCE",4)
+            nombre=1
+            produit=""
+            montant=0
+        else:
             try:
                 produit,montant=setting.produits[int(reference)]
-                montant=-montant*nombre
-                hint(reference+": "+produit,2)
-                if argent+montant>=0:
-                    hint(STRING_montant(argent)+" -> "+STRING_montant(int(argent)+montant)+" ("+str(nombre)+")",3)
-                else:
-                    hint("Argent insuffisant",3)
             except:
-                produit,montant="",0
+                produit=""
+                montant=0
                 nombre=1
-                hint(reference+": Inexistant",2)
-                hint(STRING_montant(argent)+" -> "+STRING_montant(int(argent)+montant),3)
+                hint(reference+": INEXISTANT",4)
+        montant=-montant*nombre
+        if argent+montant>=0:
+            hint(STRING_montant(argent)+" -> "+STRING_montant(int(argent)+montant)+" ("+str(nombre)+")",2)
         else:
-            nombre=1
-            hint("Credit: "+STRING_montant(argent),2)
-            hint("Entrer une Reference",4)
+            hint("Argent insuffisant",4)
+        hint(reference+": "+produit,4)
         _touche=CLAVIER_getRFID()
         if (_touche==0):#carte retiree
             return (montant,nombre,produit,0)
@@ -265,10 +263,6 @@ def MENU_getCommande(argent):
         elif (_touche==42):
             REZAL_reboot()
 def MENU_getMenu(MENUS):
-    hint(str(setting.nomBox)+"-"+str(setting.numeroBox)+"|"+str(int(setting.rezalNet))+str(int(setting.rezalOn))+str(int(setting.rezalMode))+"|V"+str(setting.version),1)
-    hint("",2)
-    hint("",3)
-    hint("",4)
     _num=0
     _menu=MENUS[0]
     _touche=1
@@ -325,16 +319,18 @@ def MENU_resetCarteBDD():
     SQL_EXECUTE(QUERRY_addLog(setting.numeroBox,setting.nomBox,"RESET CARTE BDD",str(UID)))
     RFID_waitRetireCarte()
 def MENU_resetLogQuerry():
-    os.system("sudo rm "+"/home/pi/PICONFLEX2000-LOGS/LOG_QUERRY.txt")
+    os.system("sudo rm /home/pi/PICONFLEX2000-LOGS/LOG_QUERRY.txt")
     CLAVIER_get()
 def MENU_resetLogSQL():
-    os.system("sudo rm "+"/home/pi/PICONFLEX2000-LOGS/LOG_SQL.txt")
+    os.system("sudo rm /home/pi/PICONFLEX2000-LOGS/LOG_SQL.txt")
     CLAVIER_get()
 def MENU_resetLogError():
-    os.system("sudo rm "+"/home/pi/PICONFLEX2000-LOGS/LOG_ERROR.txt")
+    os.system("sudo rm /home/pi/PICONFLEX2000-LOGS/LOG_ERROR.txt")
+    CLAVIER_get()
+def MENU_resetLogs():
+    os.system("sudo rm -r /home/pi/PICONFLEX2000-LOGS")
     CLAVIER_get()
 def MENU_setNomBox():
-    
     return
 def MENU_fusionCartes():
     return
@@ -349,3 +345,5 @@ def MENU_resetCarte():
     SQL_EXECUTE(QUERRY_setMontant(RFID_getUID(),0))
     SQL_EXECUTE(QUERRY_addLog(setting.numeroBox,setting.nomBox,"RESET CARTE BDD",str(RFID_getUID())))
     RFID_waitRetireCarte()
+def MENU_repairCarte():
+    return
