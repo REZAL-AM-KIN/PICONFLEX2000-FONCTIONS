@@ -194,9 +194,21 @@ def MENU_getMontant(argent):
                 montant=str(2000)
             elif (int(montant)<5000):
                 montant=str(5000)
+            elif (int(montant)<10000):
+                montant=str(10000)
+            elif (int(montant)<20000):
+                montant=str(20000)
+            elif (int(montant)<50000):
+                montant=str(50000)
         elif (_touche==45):#_touche -
             if (montant==""):
                 montant=""
+            elif (int(montant)>50000):
+                montant=str(50000)
+            elif (int(montant)>20000):
+                montant=str(20000)
+            elif (int(montant)>10000):
+                montant=str(10000)
             elif (int(montant)>5000):
                 montant=str(5000)
             elif (int(montant)>2000):
