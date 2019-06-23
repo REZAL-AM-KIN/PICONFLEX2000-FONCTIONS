@@ -11,6 +11,7 @@ def RFID_waitRetireCarte():
     hint("",4)
     while RFID_carteCheck():
         hint("RETIRER LA CARTE",4)
+        hint("",4)
         pass
     return
 def RFID_read(block):
@@ -24,6 +25,7 @@ def RFID_read(block):
                     return TAG
         except:
             hint("! PROBLEME LECTURE !",4)
+            hint("",4)
 def RFID_readCarte():
     while True:
         try:
@@ -33,6 +35,7 @@ def RFID_readCarte():
                     return (int(STRING_Tag(uid)),int(STRING_Tag(MIFAREReader.MFRC522_Read(config.blockArgent)[0:8])),int(STRING_Tag(MIFAREReader.MFRC522_Read(config.blockHashCodeGuinche)[0:8])),int(STRING_Tag(MIFAREReader.MFRC522_Read(config.blockHashUID)[0:8])),int(STRING_Tag(MIFAREReader.MFRC522_Read(config.blockHashArgent)[0:8])))
         except:
             hint("! PROBLEME LECTURE !",4)
+            hint("",4)
         sleep(0.01)
 def RFID_write(block,TAG):
     tag=STRING_List(TAG)
@@ -47,8 +50,10 @@ def RFID_write(block,TAG):
                     if str(int(TAG_read))==str(int(TAG)):
                         return
                     hint("! ERREUR ECRITURE  !",4)
+                    hint("",4)
         except:
             hint("!PROBLEME ECRITURE !",4)
+            hint("",4)
 def RFID_setArgent(montant):
     montant=("0"*8+str(max(0,montant)))[-8:]
     RFID_write(config.blockArgent,montant)
