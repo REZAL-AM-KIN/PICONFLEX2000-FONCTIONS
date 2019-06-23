@@ -152,6 +152,7 @@ def MENU_getMontant(argent):
     while True:
         if (montant==""):
             hint("ENTRER LE MONTANT",4)
+            montant=0
         else:
             hint("Montant: "+STRING_montant(montant),4)
         if setting.nomBox[0]=="C":
