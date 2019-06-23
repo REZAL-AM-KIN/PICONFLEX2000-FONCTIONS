@@ -223,6 +223,7 @@ def MENU_getCommande(argent):
         else:
             try:
                 produit,montant=setting.produits[int(reference)]
+                hint(reference+": "+produit,4)
             except:
                 produit=""
                 montant=0
@@ -233,7 +234,6 @@ def MENU_getCommande(argent):
             hint(STRING_montant(argent)+" -> "+STRING_montant(int(argent)+montant)+" ("+str(nombre)+")",2)
         else:
             hint("Argent insuffisant",4)
-        hint(reference+": "+produit,4)
         _touche=CLAVIER_getRFID()
         if (_touche==0):#carte retiree
             return (montant,nombre,produit,0)
@@ -253,7 +253,7 @@ def MENU_getCommande(argent):
             else:
                 pass
         elif(_touche in [48,49,50,51,52,53,54,55,56,57]):#touches 0,1,2,3,4,5,6,7,8,9
-            if len(reference)<2:
+            if len(reference)<3:
                 reference=str(reference)+chr(_touche)
         elif (_touche==43):#_touche +
             nombre=min(9,max(nombre+1,1))#ajoute une produit
