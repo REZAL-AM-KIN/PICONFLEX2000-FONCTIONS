@@ -58,6 +58,8 @@ def MENU_setIPServeur():
     while True:
         _touche=CLAVIER_get()
         if (_touche==10):
+            if IP=="":
+                return
             if len(IP.split("."))>=4:
                 DATA_setVariable('connection["host"]',IP)
                 return
