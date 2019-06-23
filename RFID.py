@@ -8,9 +8,11 @@ def RFID_carteCheck():
             return True
     return False
 def RFID_waitRetireCarte():
+    _counter=1
     while RFID_carteCheck():
-        hint("",4)
-        hint("RETIRER LA CARTE",4)
+        MENU_clear() #Nettoie l'écran
+        _counter=_counter%4+1
+        hint("RETIRER LA CARTE",_counter)
     return
 def RFID_read(block):
     while True:
