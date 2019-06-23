@@ -44,9 +44,9 @@ def RFID_write(block,TAG):
                     MIFAREReader.MFRC522_Read(block)
                     MIFAREReader.MFRC522_Write(block,tag)
                     TAG_read=RFID_read(block)
-                    if str(TAG_read)==str(TAG):
+                    if str(int(TAG_read))==str(int(TAG)):
                         return
-                    hint(str(TAG_read)+" / "+str(TAG),4)
+                    hint("! ERREUR ECRITURE  !",4)
         except:
             hint("!PROBLEME ECRITURE !",4)
 def RFID_setArgent(montant):

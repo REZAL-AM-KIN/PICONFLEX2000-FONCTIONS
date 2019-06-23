@@ -12,7 +12,7 @@ def STRING_montant(montant):
     else:
         return (STRING[0:-2]+","+STRING[-2]+STRING[-1]+"e")
 def STRING_List(tag):
-    tag=(8*"0"+str(tag))[-8:]
+    tag=(8*"0"+str(int(tag)))[-8:]
     LIST=[]
     for i in range(4):
         LIST.append(int(tag[2*i]+tag[2*i+1]))
