@@ -145,7 +145,7 @@ def MENU_getCode(code,texte):
         elif (_touche==45):
             REZAL_exit()
         try:
-            if int(_txt) in [code,codeguinche]:
+            if int(_txt) in [code,codeGuinche]:
                 return
         except:
             pass
