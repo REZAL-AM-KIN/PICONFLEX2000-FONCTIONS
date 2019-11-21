@@ -7,7 +7,10 @@ def REZAL_ping(IP):
 def REZAL_pingAndSetState(IP):
     return SQL_EXECUTE(QUERRY_setOnline(IP,int(REZAL_ping(IP))))
 def REZAL_pingServeur():
-    return REZAL_ping(setting.connection["host"])
+    try:
+        return REZAL_ping(setting.connection["host"])
+    except:
+        return False
 def REZAL_pingInternet():
     try:
         return REZAL_ping(setting.serveurNet)
