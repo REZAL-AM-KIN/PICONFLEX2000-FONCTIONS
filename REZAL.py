@@ -9,7 +9,10 @@ def REZAL_pingAndSetState(IP):
 def REZAL_pingServeur():
     return REZAL_ping(setting.connection["host"])
 def REZAL_pingInternet():
-    return REZAL_ping(setting.serveurNet)
+    try:
+        return REZAL_ping(setting.serveurNet)
+    except:
+        return False
 def REZAL_getIP():
     try:
         return str(subprocess.check_output("hostname -I",shell=True).decode('utf-8')).split(" ")[0]
