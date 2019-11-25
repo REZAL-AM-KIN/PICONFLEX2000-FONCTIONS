@@ -17,8 +17,11 @@ def REZAL_pingInternet():
     except:
         return False
 def REZAL_getIP():
+    a = ""
     try:
-        return str(subprocess.check_output("hostname -I",shell=True).decode('utf-8')).split(" ")[0]
+        a = str(subprocess.check_output("hostname -I",shell=True).decode('utf-8')).split(" ")[0]
+        print(repr(a))
+        return a
     except:
         return '0.0.0.0'
 def REZAL_connect(IP):
