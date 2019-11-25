@@ -54,7 +54,8 @@ def MENU_setRezalMode():
     CLAVIER_get()
 def MENU_setIPServeur():
     IP=""
-    hint("IP: "+str(setting.connection["host"]),4)
+    hint("IP SERVEUR GUINCHE",3)
+    hint(str(setting.connection["host"]),4)
     while True:
         _touche=CLAVIER_get()
         if (_touche==10):
@@ -78,7 +79,7 @@ def MENU_setIPServeur():
             REZAL_reboot()
         elif (_touche==45):
             REZAL_exit()
-        hint("IP: "+IP,4)
+        hint(IP,4)
 def MENU_setLoginBDD():
     return
 def MENU_setMDPBDD():
