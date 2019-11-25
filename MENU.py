@@ -54,7 +54,7 @@ def MENU_setRezalMode():
     CLAVIER_get()
 def MENU_setIPServeur():
     IP=""
-    hint("IP SERVEUR GUINCHE",3)
+    hint("IP SERVEUR GUINCHE:",3)
     hint(str(setting.connection["host"]),4)
     while True:
         _touche=CLAVIER_get()
