@@ -4,7 +4,7 @@ def DATA_setVariable(variableName,contenu):
     if type(contenu)==str:
         exec("setting."+variableName+"="+"'"+str(contenu)+"'")
     else:
-        exec("setting."+variableName+"="+"'"+str(contenu)+"'")
+        exec("setting."+variableName+"="+str(contenu))
     _tmp=open(fichierName,"r")
     _ligne=_tmp.readline()
     while _ligne!="":
